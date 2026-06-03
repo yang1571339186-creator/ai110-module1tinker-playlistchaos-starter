@@ -116,7 +116,7 @@ def compute_playlist_stats(playlists: PlaylistMap) -> Dict[str, object]:
     chill = playlists.get("Chill", [])
     mixed = playlists.get("Mixed", [])
 
-    total = len(hype)
+    total = len(hype + chill + mixed)
     hype_ratio = len(hype) / total if total > 0 else 0.0
 
     avg_energy = 0.0
@@ -168,7 +168,7 @@ def search_songs(
 
     for song in songs:
         value = str(song.get(field, "")).lower()
-        if value and value in q:
+        if q in value:
             filtered.append(song)
 
     return filtered
